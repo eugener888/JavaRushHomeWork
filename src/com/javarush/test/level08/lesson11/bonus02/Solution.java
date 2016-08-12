@@ -31,20 +31,22 @@ public class Solution
 
         //list of addresses
         List<String> addresses = new ArrayList<String>();
+        List<String> families = new ArrayList<String>();
         while (true)
         {
+            String address = reader.readLine();
+            if (address.isEmpty()) break;
             String family = reader.readLine();
-            if (family.isEmpty()) break;
-
-            addresses.add(family);
+            addresses.add(address);
+            families.add(family);
         }
 
-        //read home number
-        int houseNumber = Integer.parseInt(reader.readLine());
+        //read adress
+        String address = reader.readLine();
 
-        if (0 <= houseNumber && houseNumber < addresses.size())
+        if (addresses.contains(address))
         {
-            String familySecondName = addresses.get(houseNumber);
+            String familySecondName = families.get(addresses.indexOf(address));
             System.out.println(familySecondName);
         }
     }

@@ -15,10 +15,15 @@ public class Solution
 {
     public static void main(String[] args)
     {
+        System.out.println(isDateOdd("MAY 1 2013"));
     }
 
     public static boolean isDateOdd(String date)
     {
-        return true;
+        String beginDate = "JANUARY 1 " + date.substring(date.length()-4);
+        Date dateDate = new Date(date);
+        Date beginDateDate = new Date(beginDate);
+        long dif = (dateDate.getTime()-beginDateDate.getTime())/1000/60/60/24 + 1;
+        return (dif % 2 == 1);
     }
 }
