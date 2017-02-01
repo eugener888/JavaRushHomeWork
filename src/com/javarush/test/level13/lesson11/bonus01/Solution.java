@@ -19,13 +19,14 @@ package com.javarush.test.level13.lesson11.bonus01;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Solution
 {
     public static void main(String[] args)
     {
         // напишите тут ваш код
-        ArrayList<String> list = new ArrayList<String>();
+        ArrayList<Integer> list = new ArrayList<Integer>();
         String s="";
         try
         {
@@ -38,17 +39,27 @@ public class Solution
             {
                 char theChar = (char) data;
                 //System.out.println(theChar+" "+data);
-                if (data==13)
+                if (data==13) data = inputStreamReader.read();
+                if (data==10)
                 {
-                    data = inputStreamReader.read();
-                    list.add(s);
-                    s="";
+                    //System.out.println("s= "+s);
+                    if (!s.equals(""))
+                    {
+                        int num = Integer.parseInt(s);
+                        if (num % 2 == 0) list.add(num);
+                        s = "";
+                    }
                 }
                 s+=theChar;
+                s=s.trim();
                 data = inputStreamReader.read();
             }
-            list.add(s);
-
+            if (!s.equals(""))
+            {
+                int num = Integer.parseInt(s);
+                if (num % 2 == 0) list.add(num);
+            }
+            Collections.sort(list);
         }
         catch (FileNotFoundException e)
         {
